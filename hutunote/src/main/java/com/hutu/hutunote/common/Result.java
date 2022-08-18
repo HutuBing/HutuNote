@@ -1,68 +1,161 @@
 package com.hutu.hutunote.common;
 
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 
-
-@SuppressWarnings("serial")
+/**
+ * 接口返回数据格式
+ * @author liaojb
+ * @date  2022年8月18日
+ */
 @Data
+@ApiModel(value="接口返回对象", description="接口返回对象")
 public class Result<T> implements Serializable {
 	/**
-	 * 状态码
+	 * 成功标志
 	 */
-	private String code = CodeConstant.SUCCESS;
-	/**
-	 * 提示信息
-	 */
-	private String message = "success";
+	@ApiModelProperty(value = "成功标志")
+	private boolean success = true;
 
+	/**
+	 * 返回处理消息
+	 */
+	@ApiModelProperty(value = "返回处理消息")
+	private String message = "";
+
+	/**
+	 * 返回代码
+	 */
+	@ApiModelProperty(value = "返回代码")
+	private Integer code = 200;
+	
+	/**
+	 * 返回数据对象 data
+	 */
+	@ApiModelProperty(value = "返回数据对象")
 	private T data;
+	
+	/**
+	 * 时间戳
+	 */
+	@ApiModelProperty(value = "时间戳")
+	private long timestamp = System.currentTimeMillis();
 
-	private Result() {}
-
-	private Result(T data) {
-		this.data = data;
+	public Result() {
 	}
 
-	private Result(String code, String msg) {
+    /**
+     * @param code
+     * @param message
+     */
+	public Result(Integer code, String message) {
 		this.code = code;
-		this.message = msg;
+		this.message = message;
+	}
+	
+	public Result<T> success(String message) {
+		this.message = message;
+		this.code = CodeConstant.SUCCESS;
+		this.success = true;
+		return this;
 	}
 
+	@Deprecated
+	public static Result<Object> ok() {
+		Result<Object> r = new Result<Object>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		return r;
+	}
 
-	public static <T> Result<T> build() {
-		return new Result<T>();
+	@Deprecated
+	public static Result<Object> ok(String msg) {
+		Result<Object> r = new Result<Object>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		r.setMessage(msg);
+		return r;
+	}
+
+	@Deprecated
+	public static Result<Object> ok(Object data) {
+		Result<Object> r = new Result<Object>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		r.setData(data);
+		return r;
+	}
+
+	public static<T> Result<T> OK() {
+		Result<T> r = new Result<T>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		return r;
+	}
+
+	public static<T> Result<T> OK(String msg) {
+		Result<T> r = new Result<T>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		r.setMessage(msg);
+		r.setData((T) msg);
+		return r;
+	}
+
+	public static<T> Result<T> OK(T data) {
+		Result<T> r = new Result<T>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		r.setData(data);
+		return r;
+	}
+
+	public static<T> Result<T> OK(String msg, T data) {
+		Result<T> r = new Result<T>();
+		r.setSuccess(true);
+		r.setCode(CodeConstant.SUCCESS);
+		r.setMessage(msg);
+		r.setData(data);
+		return r;
+	}
+
+	public static<T> Result<T> error(String msg, T data) {
+		Result<T> r = new Result<T>();
+		r.setSuccess(false);
+		r.setCode(CodeConstant.SERVICE_ERROR);
+		r.setMessage(msg);
+		r.setData(data);
+		return r;
+	}
+
+	public static Result<Object> error(String msg) {
+		return error(CodeConstant.SERVICE_ERROR, msg);
+	}
+	
+	public static Result<Object> error(int code, String msg) {
+		Result<Object> r = new Result<Object>();
+		r.setCode(code);
+		r.setMessage(msg);
+		r.setSuccess(false);
+		return r;
+	}
+
+	public Result<T> error500(String message) {
+		this.message = message;
+		this.code = CodeConstant.SERVICE_ERROR;
+		this.success = false;
+		return this;
 	}
 
 	/**
-	 *  成功时候的调用
-	 * */
-	public static <T> Result<T> success(T data){
-		return new Result<T>(data);
+	 * 无权限访问返回结果
+	 */
+	public static Result<Object> noauth(String msg) {
+		return error(CodeConstant.NO_AUTH, msg);
 	}
 
-	public Result<T> code(String code) {
-		this.code = code;
-		return this;
-	}
-	public Result<T> message(String message) {
-		this.message = message;
-		return this;
-	}
-	public Result<T> data(T data) {
-		this.data = data;
-		return this;
-	}
-	public Result<T> fail() {
-		this.code = CodeConstant.FAILURE;
-		this.message = "fail";
-		return this;
-	}
-	public static <T> Result<T> fail(String message) {
-		return new Result(CodeConstant.FAILURE, message);
-	}
 
 }
-

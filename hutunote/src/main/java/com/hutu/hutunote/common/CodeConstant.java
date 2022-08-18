@@ -6,6 +6,7 @@ package com.hutu.hutunote.common;
  * @author liaojb
  */
 public interface CodeConstant {
-	public final static String SUCCESS = "200";
-	public final static String FAILURE = "500";
+	public final static Integer SUCCESS = 200;
+	public final static Integer SERVICE_ERROR = 500;
+	public final static Integer NO_AUTH = 401;
 }
