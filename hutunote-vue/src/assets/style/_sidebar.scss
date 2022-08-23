@@ -1,0 +1,25 @@
+@import 'varibles';
+
+.left-menu {
+  position: absolute;
+  left: 0;
+  top: $header-height;
+  bottom: 0;
+  z-index: 2;
+  width: $menu-width;
+  background: #f9fafb;
+  box-shadow: 2px 0px 2px 0px;
+  font-size: 12px;
+  color: #A3ABC2;
+  text-align: center;
+  transition: width ease .7s;
+  overflow: auto;
+
+
+  .menu-list {
+    .item {
+      padding: 0px 0px;
+      text-align: center;
+    }
+  }
+}

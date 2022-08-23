@@ -1,0 +1,13 @@
+@keyframes ani-blink {
+  0% {
+    opacity: .3;
+  }
+
+  40% {
+    opacity: .6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
