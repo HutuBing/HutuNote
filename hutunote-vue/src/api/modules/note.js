@@ -14,4 +14,4 @@ import { base_url } from '@/utils/config.js'
  * @Date: 2022-08-11 10:43:15
  * @author: liaojb
  */
-export const getNoteList = () => $http.get(`${base_url}/note/list`)
+export const list = () => $http.get(`${base_url}/note/list`)

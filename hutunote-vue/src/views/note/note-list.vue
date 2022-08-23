@@ -1,6 +1,16 @@
 <template>
     <div>
-        <el-table class="bueatyScroll" :data="tableData" :height="tableHeight" style="padding-left: 10px;">
+        <div class="search-note">
+            <el-input placeholder="搜索笔记" style="width: calc(100% - 40px); padding-right: 10px; border-radius: 10px;" />
+            <el-button icon="el-icon-search" circle type="primary" size="mini"></el-button>
+        </div>
+        <el-table class="bueatyScroll"
+                  :data="tableData"
+                  :height="tableHeight"
+                  highlight-current-row
+                  :show-header="false"
+                  style="padding-left: 10px;"
+                  @row-click="handleRowClick">
             <el-table-column prop="name">
                 <template slot-scope="scope">
                     <div style="padding: 5px; border-radius: 15px;">
@@ -24,36 +34,33 @@
         name: "note-list",
         data() {
             return {
-                tableHeight: "800px",
-                tableData: [
-                    {name: "动态代理.md", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文件.txt", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文档.docx", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "动态代理.md", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文件.txt", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文档.docx", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "动态代理.md", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文件.txt", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文档.docx", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "动态代理.md", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文件.txt", createDate: "2022-08-01", fileSize: "10kb"},
-                    {name: "测试文档.docx", createDate: "2022-08-01", fileSize: "10kb"},
-                ]
+                tableHeight: "500px",
+                tableData: []
             }
         },
+        created(){
+            this.initTableHeight()
+            this.fetchTaskList()
+        },
         methods: {
+            initTableHeight(){
+                this.tableHeight = document.documentElement.clientHeight - 50 + 'px'
+            },
             fetchTaskList() {
                 this.loadViewData({
-                    modulesName: "businessDispatch",
-                    url: "taskConfigsList",
+                    modulesName: "note",
+                    url: "list",
                     params: {
-                        // typeId: this.searchForm.typeId,
+
                     },
                     success: (res) => {
-                        this.taskList = res.data || [];
+                        this.tableData = res.data || [];
                     },
                 });
             },
+            handleRowClick(row, column, event) {
+                this.$emit("item-click", row)
+            }
         }
     }
 </script>
@@ -74,5 +81,11 @@
     }
     .bueatyScroll .el-table__body-wrapper::-webkit-scrollbar-thumb:hover {
         background-color:#bbb;
+    }
+    .search-note {
+        padding: 10px 10px 10px 20px;
+    }
+    .search-note .el-input__inner {
+        border-radius: 15px;
     }
 </style>

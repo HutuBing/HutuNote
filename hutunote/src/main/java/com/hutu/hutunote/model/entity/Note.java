@@ -18,5 +18,6 @@ public class Note extends BaseEntity {
     private String filePath;
     private String fileText;
     private String cataId;
+    private String fileSize;
 
 }

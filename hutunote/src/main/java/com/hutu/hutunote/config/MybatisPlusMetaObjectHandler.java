@@ -17,14 +17,14 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName("createDate", new Date(), metaObject);
         this.setFieldValByName("state", "E", metaObject);
         //todo 上下文获取用户code
-        this.setFieldValByName("createOperCode", "test", metaObject);
+        this.setFieldValByName("createOper", "test", metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         this.setFieldValByName("updateDate", new Date(), metaObject);
         //todo 上下文获取用户code
-        this.setFieldValByName("updateOperCode", "test", metaObject);
+        this.setFieldValByName("updateOper", "test", metaObject);
     }
 
 }
