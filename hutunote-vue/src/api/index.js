@@ -5,7 +5,7 @@
  * @LastEditors: liaojb
  * @LastEditTime: 2022-08-01 14:14:43
  */
-import * as taskDispatch from './modules/task-dispatch'
+import * as note from './modules/note'
 export default {
-  taskDispatch
+  note
 }
