@@ -4,8 +4,8 @@
             <el-col :span="4" style="border-right: 1px solid #d3d3d3; height: 100%;">
                 <note-list @item-click="handleItemClick"/>
             </el-col>
-            <el-col :span="20">
-
+            <el-col :span="20" style="border-right: 1px solid #d3d3d3; height: 100%;">
+                <note-md />
             </el-col>
         </el-row>
     </div>
@@ -13,10 +13,12 @@
 
 <script>
     import noteList from './note-list'
+    import noteMd from './note-md'
     export default {
         name: "note",
         components: {
-            noteList
+            noteList,
+            noteMd
         },
         methods: {
             handleItemClick(item) {

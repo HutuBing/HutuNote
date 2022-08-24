@@ -16,6 +16,7 @@
     "element-ui": "^2.13.2",
     "jsplumb": "^2.15.6",
     "lodash": "^4.17.20",
+    "mavon-editor": "^2.10.4",
     "vue": "^2.6.11",
     "vue-codemirror": "^4.0.6",
     "vue-router": "^3.2.0",
