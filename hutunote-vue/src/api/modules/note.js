@@ -5,7 +5,7 @@
  * @LastEditors: liaojb
  * @LastEditTime: 2022-08-22 16:39:16
  */
-
+import qs from 'qs'
 import $http from '@/utils/http'
 import { base_url } from '@/utils/config.js'
 
@@ -14,4 +14,4 @@ import { base_url } from '@/utils/config.js'
  * @Date: 2022-08-11 10:43:15
  * @author: liaojb
  */
-export const list = () => $http.get(`${base_url}/note/list`)
+export const list = (params) => $http.get(`${base_url}/note/list?${qs.stringify(params)}`)

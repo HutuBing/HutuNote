@@ -1,10 +1,11 @@
 package com.hutu.hutunote.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hutu.hutunote.common.Result;
 import com.hutu.hutunote.model.entity.Note;
+import com.hutu.hutunote.model.params.QueryNoteParams;
 import com.hutu.hutunote.model.params.SaveNoteParams;
 import com.hutu.hutunote.model.params.UpdateNoteParams;
+import com.hutu.hutunote.model.vo.NoteInfoVO;
 import com.hutu.hutunote.service.INoteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,10 +24,8 @@ public class NoteController extends BaseController{
 
     @ApiOperation(value = "查询", httpMethod = "GET")
     @GetMapping("/list")
-    public Result<List<Note>> list(){
-        List<Note> list = noteService.list(
-                new LambdaQueryWrapper<Note>()
-        );
+    public Result<List<NoteInfoVO>> list(QueryNoteParams params){
+        List<NoteInfoVO> list = noteService.listNoteInfo(params);
         return Result.OK(list);
     }
 

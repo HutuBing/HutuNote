@@ -8,13 +8,6 @@ import { Message } from 'element-ui'
 // axios 配置
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 axios.defaults.headers.post['Accept'] = 'application/json;charset=UTF-8'
-// axios.defaults.transformRequest = [function (data) {
-//   let ret = ''
-//   for (let it in data) {
-//     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-//   }
-//   return ret
-// }]
 // http request 拦截器
 axios.interceptors.request.use(
   config => {

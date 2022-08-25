@@ -1,8 +1,16 @@
 <template>
     <div>
         <div class="search-note">
-            <el-input placeholder="搜索笔记" style="width: calc(100% - 40px); padding-right: 10px; border-radius: 10px;" />
-            <el-button icon="el-icon-search" circle type="primary" size="mini"></el-button>
+            <el-input v-model="keyword"
+                      placeholder="搜索笔记"
+                      style="width: calc(100% - 40px); padding-right: 10px; border-radius: 10px;"
+            />
+            <el-button icon="el-icon-search"
+                       circle
+                       type="primary"
+                       size="mini"
+                       @click="fetchTaskList">
+            </el-button>
         </div>
         <el-table class="bueatyScroll"
                   :data="tableData"
@@ -35,7 +43,8 @@
         data() {
             return {
                 tableHeight: "500px",
-                tableData: []
+                tableData: [],
+                keyword: ""
             }
         },
         created(){
@@ -51,7 +60,7 @@
                     modulesName: "note",
                     url: "list",
                     params: {
-
+                        keyword: this.keyword
                     },
                     success: (res) => {
                         this.tableData = res.data || [];
