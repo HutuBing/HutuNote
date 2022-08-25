@@ -15,3 +15,17 @@ import { base_url } from '@/utils/config.js'
  * @author: liaojb
  */
 export const list = (params) => $http.get(`${base_url}/note/list?${qs.stringify(params)}`)
+
+/**
+ * @description: ID查笔记内容
+ * @Date: 2022-08-25 22:26:15
+ * @author: liaojb
+ */
+export const getById = (id) => $http.get(`${base_url}/note/${id}`)
+
+/**
+ * @description: 修改笔记内容
+ * @Date: 2022-08-25 23:30:15
+ * @author: liaojb
+ */
+export const updateById = (params) => $http.put(`${base_url}/note/${params.id}`, params)

@@ -65,7 +65,7 @@
                     success: (res) => {
                         this.tableData = res.data || [];
                     },
-                });
+                })
             },
             handleRowClick(row, column, event) {
                 this.$emit("item-click", row)
