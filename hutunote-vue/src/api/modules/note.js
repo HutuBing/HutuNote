@@ -29,3 +29,10 @@ export const getById = (id) => $http.get(`${base_url}/note/${id}`)
  * @author: liaojb
  */
 export const updateById = (params) => $http.put(`${base_url}/note/${params.id}`, params)
+
+/**
+ * @description: 新建笔记
+ * @Date: 2022-08-26 10:38:15
+ * @author: liaojb
+ */
+export const save = (params) => $http.post(`${base_url}/note`, params)

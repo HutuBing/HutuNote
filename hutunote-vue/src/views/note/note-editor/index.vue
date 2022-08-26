@@ -1,7 +1,10 @@
 <template>
-    <div>
+    <div v-loading="loading">
         <el-row :style="{'line-height': headHeight+'px'}">
-            <span style="margin-left: 10px; font-size: 16px; width: calc(100% - 100px); float: left;">{{note.name}}</span>
+            <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 100px); float: left;">
+            <el-input v-if="editable" v-model="note.name" style="width: 150px; border-radius: 5px;"/>
+            <span v-else>{{note.name}}</span>
+            </div>
             <el-button v-if="editable"
                        type="plain"
                        round
@@ -13,9 +16,9 @@
                        size="small"
                        @click="editable = !editable">编辑</el-button>
         </el-row>
-        <!--<div v-if="showEditor">-->
-            <note-md v-if="showEditor" v-model="note.fileText" :head-height="headHeight" :editable="editable"/>
-        <!--</div>-->
+        <div v-if="showEditor">
+            <note-md v-model="note.fileText" :head-height="headHeight" :editable="editable"/>
+        </div>
     </div>
 </template>
 
@@ -40,8 +43,12 @@
                 },
                 headHeight: 65,
                 editable: false,
-                showEditor: false
+                showEditor: false,
+                loading: false
             }
+        },
+        mounted(){
+            this.getFileText()
         },
         watch: {
             value(oldVal, newVal){
@@ -55,6 +62,7 @@
                     modulesName: "note",
                     url: "getById",
                     params: this.value,
+                    loading: 'loading',
                     success: (res) => {
                         this.note.name = res.data.name || ''
                         this.note.fileText = res.data.fileText || ''
@@ -72,7 +80,8 @@
                         id: this.value
                     },
                     success: (res) => {
-
+                        this.editable = false
+                        this.$emit("save-success", this.note)
                     },
                 })
             }

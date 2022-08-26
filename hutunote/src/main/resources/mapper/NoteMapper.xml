@@ -16,6 +16,7 @@
                 UPPER(NAME) LIKE CONCAT('%', UPPER(#{keyword}), '%')
             </if>
         </where>
+         ORDER BY CREATE_DATE DESC
     </select>
 
 </mapper>

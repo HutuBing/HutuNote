@@ -9,7 +9,7 @@
                        circle
                        type="primary"
                        size="mini"
-                       @click="fetchTaskList">
+                       @click="getTableData">
             </el-button>
         </div>
         <el-table class="bueatyScroll"
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
         name: "note-list",
         data() {
@@ -49,13 +50,13 @@
         },
         created(){
             this.initTableHeight()
-            this.fetchTaskList()
+            this.getTableData()
         },
         methods: {
             initTableHeight(){
                 this.tableHeight = document.documentElement.clientHeight - 50 + 'px'
             },
-            fetchTaskList() {
+            getTableData() {
                 this.loadViewData({
                     modulesName: "note",
                     url: "list",
@@ -69,6 +70,16 @@
             },
             handleRowClick(row, column, event) {
                 this.$emit("item-click", row)
+            }
+        },
+        computed: {
+            ...mapState('note', {
+                curNoteId: 'curNoteId'
+            })
+        },
+        watch: {
+            curNoteId(oldVal, newVal) {
+                this.getTableData()
             }
         }
     }

@@ -32,11 +32,12 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     }
 
     @Override
-    public Boolean save(SaveNoteParams params) {
+    public String save(SaveNoteParams params) {
         Note note = new Note();
         BeanUtils.copyProperties(params, note);
         //todo 不同类型做不同操作，需要和文件服务器交互
-        return this.save(note);
+        this.save(note);
+        return note.getId();
     }
 
     @Override
@@ -46,12 +47,27 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         note.setName(StringUtil.isEmpty(params.getName()) ? null : params.getName());
         note.setCataId(StringUtil.isEmpty(params.getCataId()) ? null : params.getCataId());
         note.setFileText(StringUtil.isEmpty(params.getFileText()) ? null : params.getFileText());
+        note.setFileSize(StringUtil.isEmpty(params.getFileText()) ? "0" : params.getFileText().getBytes().length + "");
         //todo 不同类型做不同操作，需要和文件服务器交互
         return this.updateById(note);
     }
 
     @Override
     public List<NoteInfoVO> listNoteInfo(QueryNoteParams params) {
-        return baseMapper.listNoteInfo(params);
+        List<NoteInfoVO> list = baseMapper.listNoteInfo(params);
+        list.forEach(item -> {
+            item.setFileSize(formatSize(item.getFileSize()));
+        });
+        return list;
+    }
+
+    private String formatSize(String size){
+        if(StringUtil.isEmpty(size)) return size;
+        long l = Long.parseLong(size);
+        if(l < 1024) return l + "B";
+        if(l < 1024 * 1024) return l/1024 + "KB";
+        if(l < 1024 * 1024 * 1024) return l/1024/1024 + "MB";
+
+        return l/1024/1024/1024 + "GB";
     }
 }

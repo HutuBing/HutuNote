@@ -2,10 +2,10 @@
     <div style="background: white; height: 100%;">
         <el-row style="height: 100%; padding: 0px; margin: 0px;">
             <el-col :span="4" style="border-right: 1px solid #d3d3d3; height: 100%;">
-                <note-list @item-click="handleItemClick"/>
+                <note-list ref="noteList" @item-click="handleItemClick" />
             </el-col>
             <el-col :span="20" style="border-right: 1px solid #d3d3d3; height: 100%;">
-                <note-editor v-if="curNoteId" v-model="curNoteId" />
+                <note-editor v-if="curNoteId" v-model="curNoteId" @save-success="handleSaveSuccess" />
             </el-col>
         </el-row>
     </div>
@@ -28,6 +28,9 @@
         methods: {
             handleItemClick(item) {
                 this.curNoteId = item.id
+            },
+            handleSaveSuccess(item) {
+                this.$refs["noteList"].getTableData()
             }
         }
     }

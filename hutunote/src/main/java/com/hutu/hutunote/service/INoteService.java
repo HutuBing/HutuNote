@@ -15,7 +15,7 @@ public interface INoteService extends IService<Note> {
 
     Boolean removeById(String id);
 
-    Boolean save(SaveNoteParams params);
+    String save(SaveNoteParams params);
 
     Boolean updateById(String id, UpdateNoteParams params);
 

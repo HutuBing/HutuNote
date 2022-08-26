@@ -1,8 +1,9 @@
 <template>
     <mavon-editor v-model="fileText"
-                  :subfield="false"
+                  :subfield="editable"
                   :editable="true"
                   :defaultOpen="'preview'"
+                  :toolbarsFlag="editable"
                   :style="{height: editorHeight}" />
 </template>
 
@@ -21,6 +22,10 @@
             },
             value: {
                 type: String
+            },
+            editable: {
+                type: Boolean,
+                default: false
             }
         },
         created() {

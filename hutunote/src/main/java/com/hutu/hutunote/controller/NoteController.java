@@ -43,7 +43,7 @@ public class NoteController extends BaseController{
 
     @ApiOperation(value = "新增", httpMethod = "POST")
     @PostMapping
-    public Result<Boolean> save(@RequestBody SaveNoteParams params){
+    public Result<String> save(@RequestBody SaveNoteParams params){
         return Result.OK(noteService.save(params));
     }
 
