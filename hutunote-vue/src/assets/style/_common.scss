@@ -412,7 +412,7 @@ body {
 
   &.new-doc {
     .wrap {
-      padding-left: $menu-width;
+      padding-left: $left-width;
       &.small-screen {
         padding-left: 0px;
         height: calc(100% - 57px);

@@ -11,7 +11,19 @@
                 </el-tooltip>
             </li>
             <li class="item">
-                <el-button circle size="medium" icon="el-icon-menu"/>
+                <el-tooltip content="首页" placement="right" effect="light">
+                    <el-button circle size="medium" icon="el-icon-s-home" @click="$router.push({path: 'home'})" />
+                </el-tooltip>
+            </li>
+            <li class="item">
+                <el-tooltip content="计划" placement="right" effect="light">
+                    <el-button circle size="medium" icon="el-icon-alarm-clock" @click="$router.push({path: 'note-editor', query: {noteId: '11'}})"/>
+                </el-tooltip>
+            </li>
+            <li class="item">
+                <el-tooltip content="设置" placement="right" effect="light">
+                    <el-button circle size="medium" icon="el-icon-setting"/>
+                </el-tooltip>
             </li>
         </ul>
 
