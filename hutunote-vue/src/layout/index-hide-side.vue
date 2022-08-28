@@ -16,9 +16,9 @@ export default {
     return {}
   },
   computed: {
-    ...mapState('commonHttp', {
-      isRouterAlive: 'isRouterAlive'
-    })
+      ...mapState('common', {
+          isRouterAlive: 'isRouterAlive'
+      })
   },
   watch: {},
   created() {

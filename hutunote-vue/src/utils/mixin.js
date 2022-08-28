@@ -8,12 +8,12 @@ export const mixinComm = { // 公共mixin
   created() {
   },
   computed: {
-    ...mapState('commonHttp', {
+    ...mapState('common', {
       curMenu: 'curMenu'
     })
   },
   methods: {
-    ...mapMutations('commonHttp', {
+    ...mapMutations('common', {
       setIsRouterAlive: 'setIsRouterAlive'
     }),
     reloadRouter() {

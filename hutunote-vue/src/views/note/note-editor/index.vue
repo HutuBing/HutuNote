@@ -48,11 +48,18 @@
             }
         },
         mounted(){
+            if(this.$route.query && this.$route.query.noteId){
+                this.note.id = this.$route.query.noteId
+            }
             this.getFileText()
         },
         watch: {
             value(oldVal, newVal){
-                this.getFileText()
+                if(this.editable){
+                    this.confirmSave()
+                }else {
+                    this.getFileText()
+                }
             }
         },
         methods: {
@@ -61,9 +68,10 @@
                 this.loadViewData({
                     modulesName: "note",
                     url: "getById",
-                    params: this.value,
+                    params: this.value || this.note.id,
                     loading: 'loading',
                     success: (res) => {
+                        this.note.id = res.data.id || this.value || this.note.id
                         this.note.name = res.data.name || ''
                         this.note.fileText = res.data.fileText || ''
                         this.showEditor = true
@@ -77,13 +85,22 @@
                     params: {
                         name: this.note.name,
                         fileText: this.note.fileText,
-                        id: this.value
+                        id: this.note.id
                     },
                     success: (res) => {
                         this.editable = false
                         this.$emit("save-success", this.note)
                     },
                 })
+            },
+            confirmSave() {
+                this.$confirm("是否保存修改?", "提示", {
+                    confirmButtonText: "是",
+                    cancelButtonText: "否",
+                    type: "warning",
+                }).then(() => {
+                    this.handleSave()
+                }).catch(() => {})
             }
         }
     }

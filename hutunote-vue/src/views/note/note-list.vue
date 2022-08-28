@@ -54,7 +54,7 @@
         },
         methods: {
             initTableHeight(){
-                this.tableHeight = document.documentElement.clientHeight - 50 + 'px'
+                this.tableHeight = this.clientHeight - 50 - (this.isSmallScreen ? 57 : 0) + 'px'
             },
             getTableData() {
                 this.loadViewData({
@@ -75,6 +75,10 @@
         computed: {
             ...mapState('note', {
                 curNoteId: 'curNoteId'
+            }),
+            ...mapState('common', {
+                clientHeight: 'clientHeight',
+                isSmallScreen: 'isSmallScreen'
             })
         },
         watch: {

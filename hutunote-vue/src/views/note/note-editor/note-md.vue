@@ -8,6 +8,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     export default {
         name: "note-md",
         data() {
@@ -34,13 +35,19 @@
         },
         methods: {
             initEditorHeight() {
-                this.editorHeight = document.documentElement.clientHeight - this.headHeight + "px"
+                this.editorHeight = this.clientHeight - this.headHeight - (this.isSmallScreen ? 57 : 0) + "px"
             }
         },
         watch: {
             fileText(oldVal, newVal){
                 this.$emit('input', newVal)
             }
+        },
+        computed: {
+            ...mapState('common', {
+                clientHeight: 'clientHeight',
+                isSmallScreen: 'isSmallScreen'
+            })
         }
     }
 </script>

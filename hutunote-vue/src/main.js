@@ -11,6 +11,7 @@ Vue.prototype.api = api
 
 import ELEMENT from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/display.css';
 Vue.use(ELEMENT)
 
 import '@/global' // 注册全局组件
