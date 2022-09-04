@@ -40,7 +40,7 @@
         },
         watch: {
             fileText(oldVal, newVal){
-                this.$emit('input', newVal)
+                this.$emit('input', this.fileText)
             }
         },
         computed: {

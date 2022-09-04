@@ -29,7 +29,8 @@ module.exports = {
           '^/api': '/' // 重写接口
         }
       }
-    } // 配置多个代理
+    }, // 配置多个代理
+    disableHostCheck: true
   },
   lintOnSave: false, // 关闭eslint代码检查
   configureWebpack: {
