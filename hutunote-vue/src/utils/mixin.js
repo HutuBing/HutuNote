@@ -65,6 +65,18 @@ export const mixinComm = { // 公共mixin
             this.warningMessageFn('error', JSON.stringify(er))
           }
         })
+    },
+    uploadFile({ file, success, fail, error }) {
+      let formData = new FormData()
+      formData.append('file', file)
+      this.loadViewData({
+        params: formData,
+        modulesName: 'files',
+        url: 'upload',
+        success: success,
+        fail: fail,
+        error: error
+      })
     }
   }
 }

@@ -6,6 +6,8 @@
  * @LastEditTime: 2022-08-01 14:14:43
  */
 import * as note from './modules/note'
+import * as files from './modules/files'
 export default {
-  note
+  note,
+  files
 }

@@ -28,6 +28,13 @@ module.exports = {
         pathRewrite: {
           '^/api': '/' // 重写接口
         }
+      },
+      '/hutunote': {
+        target: 'http://localhost:8088/hutunote',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/hutunote': '/' // 重写接口
+        }
       }
     }, // 配置多个代理
     disableHostCheck: true

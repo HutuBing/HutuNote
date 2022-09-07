@@ -1,10 +1,12 @@
 <template>
-    <mavon-editor v-model="fileText"
+    <mavon-editor ref="editor"
+                  v-model="fileText"
                   :subfield="editable"
                   :editable="true"
                   :defaultOpen="'preview'"
                   :toolbarsFlag="editable"
-                  :style="{height: editorHeight}" />
+                  :style="{height: editorHeight}"
+                  @imgAdd="handleImgAdd" />
 </template>
 
 <script>
@@ -36,6 +38,14 @@
         methods: {
             initEditorHeight() {
                 this.editorHeight = this.clientHeight - this.headHeight - (this.isSmallScreen ? 57 : 0) + "px"
+            },
+            handleImgAdd(pos, file) {
+                this.uploadFile({
+                    file: file,
+                    success: (res) => {
+                        this.$refs['editor'].$img2Url(pos, res.data || '')
+                    },
+                })
             }
         },
         watch: {
