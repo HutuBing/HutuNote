@@ -36,3 +36,10 @@ export const updateById = (params) => $http.put(`${base_url}/note/${params.id}`,
  * @author: liaojb
  */
 export const save = (params) => $http.post(`${base_url}/note`, params)
+
+/**
+ * @description: 删除笔记
+ * @Date: 2022-09-05 19:49:15
+ * @author: liaojb
+ */
+export const deleteById = (params) => $http.delete(`${base_url}/note/${params.id}`)

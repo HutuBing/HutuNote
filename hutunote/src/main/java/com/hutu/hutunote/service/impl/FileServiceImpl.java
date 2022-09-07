@@ -21,7 +21,7 @@ public class FileServiceImpl implements IFileService {
     public String upload(MultipartFile file) {
 
         File path = new File(filePath);
-        if(path.isDirectory() && !path.exists()) {
+        if(!path.exists()) {
             path.mkdir();
         }
 

@@ -12,8 +12,9 @@
                CREATE_DATE
           FROM TB_NOTE
         <where>
+            STATE = 'E'
             <if test="keyword != null and keyword != ''">
-                UPPER(NAME) LIKE CONCAT('%', UPPER(#{keyword}), '%')
+                AND UPPER(NAME) LIKE CONCAT('%', UPPER(#{keyword}), '%')
             </if>
         </where>
          ORDER BY CREATE_DATE DESC

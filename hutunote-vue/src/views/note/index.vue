@@ -1,11 +1,26 @@
 <template>
     <div style="background: white; height: 100%;">
         <el-row style="height: 100%; padding: 0px; margin: 0px;">
-            <el-col :xs="24" :sm="24" :md="6" :lg="5" :xl="4" style="border-right: 1px solid #d3d3d3; height: 100%;">
-                <note-list ref="noteList" @item-click="handleItemClick" />
+            <el-col :xs="24"
+                    :sm="24"
+                    :md="6"
+                    :lg="5"
+                    :xl="4"
+                    style="border-right: 1px solid #d3d3d3; height: 100%;">
+                <note-list ref="noteList"
+                           @item-click="handleItemClick" />
             </el-col>
-            <el-col v-if="!isSmallScreen" :xs="1" :sm="1" :md="18" :lg="19" :xl="20" style="height: 100%;">
-                <note-editor v-if="curNoteId" v-model="curNoteId" @save-success="handleSaveSuccess" />
+            <el-col v-if="!isSmallScreen"
+                    :xs="1"
+                    :sm="1"
+                    :md="18"
+                    :lg="19"
+                    :xl="20"
+                    style="height: 100%;">
+                <note-editor v-if="curNoteId"
+                             v-model="curNoteId"
+                             @save-success="handleSaveSuccess"
+                             @delete-success="handleDeleteSuccess" />
             </el-col>
         </el-row>
     </div>
@@ -41,6 +56,11 @@
             },
             handleSaveSuccess(item) {
                 this.$refs["noteList"].getTableData()
+            },
+
+            handleDeleteSuccess() {
+                this.$refs["noteList"].getTableData()
+                this.curNoteId = ""
             }
         },
         computed: {

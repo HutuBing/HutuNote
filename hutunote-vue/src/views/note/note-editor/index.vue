@@ -1,7 +1,7 @@
 <template>
     <div v-loading="loading">
         <el-row :style="{'line-height': headHeight+'px'}">
-            <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 100px); float: left;">
+            <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 150px); float: left;">
             <el-input v-if="editable" v-model="note.name" style="width: 150px; border-radius: 5px;"/>
             <span v-else>{{note.name}}</span>
             </div>
@@ -15,6 +15,12 @@
                        round
                        size="small"
                        @click="editable = !editable">编辑</el-button>
+
+            <el-button type="danger"
+                       round
+                       size="small"
+                       @click="handleDelete">删除</el-button>
+
         </el-row>
         <div v-if="showEditor">
             <note-md v-model="note.fileText" :head-height="headHeight" :editable="editable"/>
@@ -101,6 +107,28 @@
                 }).then(() => {
                     this.handleSave()
                 }).catch(() => {})
+            },
+            handleDelete() {
+                this.$confirm("是否确认删除?", "提示", {
+                    confirmButtonText: "是",
+                    cancelButtonText: "否",
+                    type: "warning",
+                }).then(() => {
+                    this.doDelete()
+                }).catch(() => {})
+            },
+            doDelete() {
+                this.loadViewData({
+                    modulesName: "note",
+                    url: "deleteById",
+                    params: {
+                        id: this.note.id
+                    },
+                    success: (res) => {
+                        this.editable = false
+                        this.$emit("delete-success", this.note)
+                    },
+                })
             }
         }
     }

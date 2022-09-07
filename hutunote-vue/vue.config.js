@@ -23,14 +23,14 @@ module.exports = {
     open: true, // 配置自动启动浏览器
     proxy: {
       '/api': {
-        target: 'http://localhost:8088/hutunote',
+        target: 'https://5h88334g81.oicp.vip/hutunote',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/' // 重写接口
         }
       },
       '/hutunote': {
-        target: 'http://localhost:8088/hutunote',
+        target: 'https://5h88334g81.oicp.vip/hutunote',
         changeOrigin: true,
         pathRewrite: {
           '^/hutunote': '/' // 重写接口

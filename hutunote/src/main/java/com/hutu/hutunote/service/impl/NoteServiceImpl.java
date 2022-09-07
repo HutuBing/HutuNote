@@ -4,18 +4,25 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.util.StringUtil;
 import com.hutu.hutunote.mapper.NoteMapper;
 import com.hutu.hutunote.model.entity.Note;
+import com.hutu.hutunote.model.entity.NoteLearningTask;
 import com.hutu.hutunote.model.params.QueryNoteParams;
 import com.hutu.hutunote.model.params.SaveNoteParams;
 import com.hutu.hutunote.model.params.UpdateNoteParams;
 import com.hutu.hutunote.model.vo.NoteInfoVO;
+import com.hutu.hutunote.service.INoteLearningTaskService;
 import com.hutu.hutunote.service.INoteService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements INoteService {
+
+    @Autowired
+    private INoteLearningTaskService noteLearningTaskService;
 
     @Override
     public Note getById(String id) {
@@ -35,8 +42,10 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     public String save(SaveNoteParams params) {
         Note note = new Note();
         BeanUtils.copyProperties(params, note);
-        //todo 不同类型做不同操作，需要和文件服务器交互
+        //保存笔记内容
         this.save(note);
+        //初始化第一次学习记录
+        noteLearningTaskService.buildFirstTask(note.getId());
         return note.getId();
     }
 
