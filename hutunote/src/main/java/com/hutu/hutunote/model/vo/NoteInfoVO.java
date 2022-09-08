@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @ApiModel("笔记列表对象")
@@ -23,6 +23,11 @@ public class NoteInfoVO {
     private String fileSize;
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date createDate;
+    private LocalDateTime createDate;
+    @ApiModelProperty("计划时间")
+    @JsonFormat(pattern="yyyy/MM/dd HH:mm")
+    private LocalDateTime planTime;
+    @ApiModelProperty("计划说明")
+    private String planDesc;
 
 }

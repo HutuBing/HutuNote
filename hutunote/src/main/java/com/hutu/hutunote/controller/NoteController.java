@@ -6,6 +6,7 @@ import com.hutu.hutunote.model.params.QueryNoteParams;
 import com.hutu.hutunote.model.params.SaveNoteParams;
 import com.hutu.hutunote.model.params.UpdateNoteParams;
 import com.hutu.hutunote.model.vo.NoteInfoVO;
+import com.hutu.hutunote.service.INoteLearningTaskService;
 import com.hutu.hutunote.service.INoteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +22,8 @@ public class NoteController extends BaseController{
 
     @Autowired
     private INoteService noteService;
+    @Autowired
+    private INoteLearningTaskService noteLearningTaskService;
 
     @ApiOperation(value = "查询", httpMethod = "GET")
     @GetMapping("/list")
@@ -52,5 +55,12 @@ public class NoteController extends BaseController{
     public Result<Boolean> update(@PathVariable String id, @RequestBody UpdateNoteParams params){
         return Result.OK(noteService.updateById(id, params));
     }
-    
+
+    @ApiOperation(value = "完成复习", httpMethod = "POST")
+    @PostMapping("/finish/{id}")
+    public Result<Boolean> finish(@PathVariable("id") String id){
+        noteLearningTaskService.buildNextTask(id);
+        return Result.OK(true);
+    }
+
 }

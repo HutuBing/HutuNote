@@ -27,8 +27,9 @@
                             <span style="margin-left: 10px;">{{scope.row.name}}</span>
                         </div>
                         <div style="font-size: 12px; margin-top: 10px; margin-left: 25px;">
-                            <span style="color: gray">{{ scope.row.createDate }}</span>
-                            <span style="color: gray; margin-left: 20px;">{{ scope.row.fileSize }}</span>
+                            <span style="color: gray">{{ scope.row.planTime }}</span>
+                            <span style="color: gray; margin-left: 20px;">{{ scope.row.planDesc }}</span>
+<!--                            <span style="color: gray; margin-left: 20px;">{{ scope.row.fileSize }}</span>-->
                         </div>
                     </div>
                 </template>

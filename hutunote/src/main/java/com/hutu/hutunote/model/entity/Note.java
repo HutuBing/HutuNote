@@ -11,8 +11,6 @@ import java.util.Date;
 @TableName("TB_NOTE")
 public class Note extends BaseEntity {
 
-    @TableId(type = IdType.ASSIGN_UUID)
-    private String id;
     private String name;
     private String noteType;
     private String filePath;

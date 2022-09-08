@@ -3,21 +3,29 @@
 <mapper namespace="com.hutu.hutunote.mapper.NoteMapper">
 
     <select id="listNoteInfo" resultType="com.hutu.hutunote.model.vo.NoteInfoVO">
-        SELECT ID,
-               NAME,
-               NOTE_TYPE,
-               CATA_ID,
-               NOTE_TYPE,
-               FILE_SIZE,
-               CREATE_DATE
-          FROM TB_NOTE
+        SELECT
+            A.ID,
+            A.NAME,
+            A.NOTE_TYPE,
+            A.CATA_ID,
+            A.NOTE_TYPE,
+            A.FILE_SIZE,
+            A.CREATE_DATE,
+            B.PLAN_TIME
+        FROM
+            TB_NOTE A
+        LEFT JOIN TB_NOTE_LEARNING_TASK B
+            ON A.ID = B.NOTE_ID
         <where>
-            STATE = 'E'
+            A.STATE = 'E'
+            AND B.ACTUAL_TIME IS NULL
             <if test="keyword != null and keyword != ''">
-                AND UPPER(NAME) LIKE CONCAT('%', UPPER(#{keyword}), '%')
+                AND UPPER(A.NAME) LIKE CONCAT('%', UPPER(#{keyword}), '%')
             </if>
         </where>
-         ORDER BY CREATE_DATE DESC
+        ORDER BY
+            B.PLAN_TIME ASC,
+            A.CREATE_DATE DESC
     </select>
 
 </mapper>

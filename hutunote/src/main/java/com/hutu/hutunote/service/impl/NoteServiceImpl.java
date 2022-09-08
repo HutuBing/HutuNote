@@ -15,7 +15,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -66,8 +67,28 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         List<NoteInfoVO> list = baseMapper.listNoteInfo(params);
         list.forEach(item -> {
             item.setFileSize(formatSize(item.getFileSize()));
+            item.setPlanDesc(formatPlan(item.getPlanTime()));
         });
         return list;
+    }
+
+    private String formatPlan(LocalDateTime planTime) {
+        if(planTime == null) return null;
+
+        LocalDateTime now = LocalDateTime.now();
+        if(planTime.isBefore(now)){
+            return "超时：" + formatTimeGap(planTime, now);
+        } else {
+            return "等待：" + formatTimeGap(now, planTime);
+        }
+    }
+
+    private String formatTimeGap(LocalDateTime from, LocalDateTime to) {
+        Duration duration = Duration.between(from, to);
+        long days = duration.toDays();          //相差的天数
+        long hours = duration.toHours();        //相差的小时数
+        long minutes = duration.toMinutes();    //相差的分钟数
+        return (days == 0 ? "" : days + "天") + (days == 0 && hours%24 == 0 ? "" : hours%24 + "小时") + minutes%60 + "分钟";
     }
 
     private String formatSize(String size){

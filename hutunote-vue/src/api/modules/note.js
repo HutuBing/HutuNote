@@ -43,3 +43,10 @@ export const save = (params) => $http.post(`${base_url}/note`, params)
  * @author: liaojb
  */
 export const deleteById = (params) => $http.delete(`${base_url}/note/${params.id}`)
+
+/**
+ * @description: 完成复习
+ * @Date: 2022-09-08 11:19:15
+ * @author: liaojb
+ */
+export const finish = (params) => $http.post(`${base_url}/note/finish/${params.id}`)

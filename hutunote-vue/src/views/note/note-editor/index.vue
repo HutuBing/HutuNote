@@ -1,7 +1,7 @@
 <template>
     <div v-loading="loading">
         <el-row :style="{'line-height': headHeight+'px'}">
-            <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 150px); float: left;">
+            <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 210px); float: left;">
             <el-input v-if="editable" v-model="note.name" style="width: 150px; border-radius: 5px;"/>
             <span v-else>{{note.name}}</span>
             </div>
@@ -15,7 +15,10 @@
                        round
                        size="small"
                        @click="editable = !editable">编辑</el-button>
-
+            <el-button type="success"
+                       round
+                       size="small"
+                       @click="handleFinish">完成</el-button>
             <el-button type="danger"
                        round
                        size="small"
@@ -127,6 +130,28 @@
                     success: (res) => {
                         this.editable = false
                         this.$emit("delete-success", this.note)
+                    },
+                })
+            },
+            handleFinish() {
+                this.$confirm("是否完成计划?", "提示", {
+                    confirmButtonText: "是",
+                    cancelButtonText: "否",
+                    type: "warning",
+                }).then(() => {
+                    this.doFinish()
+                }).catch(() => {})
+            },
+            doFinish() {
+                this.loadViewData({
+                    modulesName: "note",
+                    url: "finish",
+                    params: {
+                        id: this.note.id
+                    },
+                    success: (res) => {
+                        this.editable = false
+                        this.$emit("refresh")
                     },
                 })
             }

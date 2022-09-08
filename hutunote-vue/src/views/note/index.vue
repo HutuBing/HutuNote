@@ -19,6 +19,7 @@
                     style="height: 100%;">
                 <note-editor v-if="curNoteId"
                              v-model="curNoteId"
+                             @refresh="refreshNoteList"
                              @save-success="handleSaveSuccess"
                              @delete-success="handleDeleteSuccess" />
             </el-col>
@@ -54,10 +55,12 @@
                     this.curNoteId = item.id
                 }
             },
+            refreshNoteList() {
+                this.$refs["noteList"].getTableData()
+            },
             handleSaveSuccess(item) {
                 this.$refs["noteList"].getTableData()
             },
-
             handleDeleteSuccess() {
                 this.$refs["noteList"].getTableData()
                 this.curNoteId = ""
