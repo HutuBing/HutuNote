@@ -6,8 +6,9 @@
  * @LastEditTime: 2021-11-26 09:26:53
 -->
 <template>
-  <div class="footer">
+  <div class="footer auto-dark">
     <el-menu
+            class="auto-dark"
             mode="horizontal"
             default-active="home"
             @select="handleSelect"

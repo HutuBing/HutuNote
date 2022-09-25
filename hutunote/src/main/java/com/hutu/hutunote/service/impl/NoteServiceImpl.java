@@ -45,8 +45,6 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         BeanUtils.copyProperties(params, note);
         //保存笔记内容
         this.save(note);
-        //初始化第一次学习记录
-        noteLearningTaskService.buildFirstTask(note.getId());
         return note.getId();
     }
 

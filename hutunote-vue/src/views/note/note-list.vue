@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="auto-dark">
         <div class="search-note">
             <el-input v-model="keyword"
                       placeholder="搜索笔记"
@@ -12,19 +12,20 @@
                        @click="getTableData">
             </el-button>
         </div>
-        <el-table class="bueatyScroll"
+        <el-table class="bueatyScroll auto-dark"
+                  style="padding-left: 5px;"
+                  :row-class-name="'auto-dark'"
                   :data="tableData"
                   :height="tableHeight"
                   highlight-current-row
                   :show-header="false"
-                  style="padding-left: 10px;"
                   @row-click="handleRowClick">
             <el-table-column prop="name">
                 <template slot-scope="scope">
-                    <div style="padding: 5px; border-radius: 15px;">
+                    <div style="border-radius: 15px;">
                         <div style="font-size: 16px;">
                             <i class="el-icon-document" style="color: deepskyblue;"></i>
-                            <span style="margin-left: 10px;">{{scope.row.name}}</span>
+                            <span style="margin-left: 10px; color: gray;">{{scope.row.name}}</span>
                         </div>
                         <div style="font-size: 12px; margin-top: 10px; margin-left: 25px;">
                             <span style="color: gray">{{ scope.row.planTime }}</span>

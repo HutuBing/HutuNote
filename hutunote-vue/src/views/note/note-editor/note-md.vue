@@ -1,10 +1,13 @@
 <template>
     <mavon-editor ref="editor"
+                  class="auto-dark"
                   v-model="fileText"
                   :subfield="editable"
                   :editable="true"
                   :defaultOpen="'preview'"
                   :toolbarsFlag="editable"
+                  previewBackground="#2D2D2D"
+                  toolbarsBackground="#2D2D2D"
                   :style="{height: editorHeight}"
                   @imgAdd="handleImgAdd" />
 </template>

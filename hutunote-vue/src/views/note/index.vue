@@ -1,5 +1,5 @@
 <template>
-    <div style="background: white; height: 100%;">
+    <div style="height: 100%;" class="auto-dark">
         <el-row style="height: 100%; padding: 0px; margin: 0px;">
             <el-col :xs="24"
                     :sm="24"
@@ -74,6 +74,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading">
+    <div v-loading="loading" class="auto-dark">
         <el-row :style="{'line-height': headHeight+'px'}">
             <div style="margin-left: 10px; font-size: 16px; width: calc(100% - 210px); float: left;">
             <el-input v-if="editable" v-model="note.name" style="width: 150px; border-radius: 5px;"/>

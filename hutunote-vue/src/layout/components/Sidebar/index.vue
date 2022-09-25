@@ -1,6 +1,6 @@
 <!-- 侧边导航 -->
 <template>
-    <div class="left-menu">
+    <div class="left-menu auto-dark">
         <ul class="menu-list">
             <li class="item" style="padding: 30px 0px;">
                 <el-avatar :size="48" src="https://t7.baidu.com/it/u=848096684,3883475370&fm=193&f=GIF"></el-avatar>

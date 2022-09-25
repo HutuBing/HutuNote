@@ -1,5 +1,5 @@
 <template>
-  <div class="doc new-doc">
+  <div class="doc new-doc auto-dark">
     <v-sidebar class="hidden-sm-and-down"/>
     <div class="wrap" :class="isSmallScreen ? 'small-screen':'left'">
       <router-view v-if="isRouterAlive" />
