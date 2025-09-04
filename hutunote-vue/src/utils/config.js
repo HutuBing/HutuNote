@@ -4,7 +4,8 @@ let base_url = ''
 // console.log(process.env.VUE_APP_ENV)
 if (process.env.VUE_APP_ENV === 'development') {
   // 开发环境
-  base_url = '/api'
+  base_url = './hutunote'
+  // base_url = 'http://localhost:8088/hutunote'
 } else if (process.env.VUE_APP_ENV === 'test') {
   // 测试环境
   base_url = api_url.test

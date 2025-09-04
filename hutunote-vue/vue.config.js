@@ -21,16 +21,17 @@ module.exports = {
     host: '0.0.0.0',
     https: false, // https:{type:Boolean}
     open: true, // 配置自动启动浏览器
+    proxy: null,
     proxy: {
       '/api': {
-        target: 'http://localhost:8088/hutunote',
+        target: 'http://localhost',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/' // 重写接口
         }
       },
       '/hutunote': {
-        target: 'http://localhost:8088/hutunote',
+        target: 'http://localhost',
         changeOrigin: true,
         pathRewrite: {
           '^/hutunote': '/' // 重写接口

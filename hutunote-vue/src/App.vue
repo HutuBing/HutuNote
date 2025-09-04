@@ -21,7 +21,16 @@
 
         },
         mounted() {
-            window.document.documentElement.setAttribute( "data-theme", 'dark');
+            setInterval(() => {
+                let date = new Date()
+                if (date.getHours() >= 7 && date.getHours() <= 21) {
+                    window.document.documentElement.setAttribute( "data-theme", 'light')
+                    this.setIsDark(false)
+                }else {
+                    window.document.documentElement.setAttribute( "data-theme", 'dark')
+                    this.setIsDark(true)
+                }
+            },100000)
         },
         updated() {
         },
@@ -30,12 +39,21 @@
                 setClientWidth: 'setClientWidth',
                 setClientHeight: 'setClientHeight',
                 setIsSmallScreen: 'setIsSmallScreen',
+                setIsDark: 'setIsDark',
             }),
 
             initState(){
                 this.setClientWidth(document.documentElement.clientWidth)
                 this.setClientHeight(document.documentElement.clientHeight)
                 this.setIsSmallScreen(document.documentElement.clientWidth < 992)
+                let date = new Date()
+                if (date.getHours() >= 7 && date.getHours() <= 21) {
+                    window.document.documentElement.setAttribute( "data-theme", 'light')
+                    this.setIsDark(false)
+                }else {
+                    window.document.documentElement.setAttribute( "data-theme", 'dark')
+                    this.setIsDark(true)
+                }
             }
         }
     }

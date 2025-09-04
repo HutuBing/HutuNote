@@ -8,6 +8,7 @@ const common = {
     clientWidth: 0,  //客户端宽度
     clientHeight: 0,  //客户端高度
     isSmallScreen: false,  //是否小屏
+    isDark: true,  //是否夜间模式
   },
   getters: {
   },
@@ -23,6 +24,9 @@ const common = {
     },
     setIsRouterAlive: (state, val) => {
       state.isRouterAlive = val
+    },
+    setIsDark: (state, val) => {
+      state.isDark = val
     }
   },
   actions: {

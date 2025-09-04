@@ -7,9 +7,9 @@ CREATE TABLE `tb_note` (
   `cata_id` varchar(36) DEFAULT NULL,
   `file_size` varchar(30) DEFAULT NULL,
   `create_oper` varchar(36) DEFAULT NULL,
-  `create_date` timestamp DEFAULT NULL,
+  `create_date` timestamp DEFAULT now(),
   `update_oper` varchar(36) DEFAULT NULL,
-  `update_date` timestamp DEFAULT NULL,
+  `update_date` timestamp,
   `state` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

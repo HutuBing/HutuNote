@@ -6,9 +6,9 @@
                   :editable="true"
                   :defaultOpen="'preview'"
                   :toolbarsFlag="editable"
-                  previewBackground="#2D2D2D"
-                  toolbarsBackground="#2D2D2D"
-                  :style="{height: editorHeight}"
+                  :previewBackground="isDark ? '#2D2D2D':''"
+                  :toolbarsBackground="isDark ? '#2D2D2D':''"
+                  :style="{height: editorHeight, color:isDark?'#CCCCCC':''}"
                   @imgAdd="handleImgAdd" />
 </template>
 
@@ -59,7 +59,8 @@
         computed: {
             ...mapState('common', {
                 clientHeight: 'clientHeight',
-                isSmallScreen: 'isSmallScreen'
+                isSmallScreen: 'isSmallScreen',
+                isDark: 'isDark',
             })
         }
     }

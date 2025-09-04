@@ -19,7 +19,7 @@ const staticRoutes = [
       nav: 'home',
       title: '首页'
     },
-    component: () => import('@/layout/index'),
+    component: () => import('@/views/hetong'),
     children: [
       {
         name: 'homeIndex',

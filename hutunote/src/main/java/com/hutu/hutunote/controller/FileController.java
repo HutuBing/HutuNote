@@ -1,5 +1,6 @@
 package com.hutu.hutunote.controller;
 
+import cn.hutool.json.JSONObject;
 import com.hutu.hutunote.common.Result;
 import com.hutu.hutunote.service.IFileService;
 import io.swagger.annotations.Api;
@@ -27,4 +28,45 @@ public class FileController {
     public void getFile(@PathVariable String fileName){
         fileService.getFile(fileName);
     }
+
+    @ApiOperation(value = "上传文件", httpMethod = "POST")
+    @PostMapping("/uploadHt")
+    public Result uploadHt(MultipartFile file){
+        fileService.uploadHt(file);
+        return Result.OK();
+    }
+
+    @ApiOperation(value = "上传文件", httpMethod = "POST")
+    @PostMapping("/uploadImage")
+    public Result uploadImage(MultipartFile file){
+        fileService.uploadImage(file);
+        return Result.OK();
+    }
+
+    @ApiOperation(value = "上传文件", httpMethod = "POST")
+    @PostMapping("/uploadTemplate")
+    public Result uploadTemplate(MultipartFile file){
+        fileService.uploadTemplate(file);
+        return Result.OK();
+    }
+
+    @ApiOperation(value = "上传文件", httpMethod = "POST")
+    @PostMapping("/listHt")
+    public Result listHt(){
+        return Result.OK(fileService.listHt());
+    }
+
+    @ApiOperation(value = "更新配置", httpMethod = "POST")
+    @PostMapping("/updateConfig")
+    public Result updateConfig(@RequestBody JSONObject params){
+        fileService.updateConfig(params);
+        return Result.OK();
+    }
+
+    @ApiOperation(value = "更新配置", httpMethod = "POST")
+    @PostMapping("/getConfig")
+    public Result getConfig(){
+        return Result.OK(fileService.getConfig());
+    }
+
 }
