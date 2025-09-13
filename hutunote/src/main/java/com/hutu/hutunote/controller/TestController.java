@@ -3,7 +3,6 @@ package com.hutu.hutunote.controller;
 import com.hutu.hutunote.common.Result;
 import com.hutu.hutunote.execute.KongfuziExecute;
 import com.hutu.hutunote.model.vo.KongIsbnInfoVo;
-import com.hutu.hutunote.model.vo.KongSellWellDetailVo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ public class TestController extends BaseController {
     private KongfuziExecute kongfuziExecute;
 
     @GetMapping("/test")
-    public Result<List<KongSellWellDetailVo>> test() {
+    public Result<List<KongIsbnInfoVo>> test() {
         return Result.OK(kongfuziExecute.getSellWellDetailList());
     }
 
