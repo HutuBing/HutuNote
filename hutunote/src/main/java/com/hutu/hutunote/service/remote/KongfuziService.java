@@ -88,9 +88,9 @@ public class KongfuziService {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
-                    .url(MessageFormat.format("https://search.kongfz.com/pc-gw/search-web/client/pc/product" +
-                            "/keyword/list?dataType=0&keyword={0}&page=1&searchMode=1&sortType=7" +
-                            "&hasStock=true&actionPath=sortType&userArea=1006000000", isbn))
+                    .url(MessageFormat.format("https://search.kongfz.com/pc-gw/search-web/client/pc/product/keyword" +
+                            "/list?dataType=0&keyword={0}&page=1&deliverTime=24h&actionPath=deliverTime,sortType,quality" +
+                            "&sortType=7&quality=85~&quaSelect=2&userArea=1006000000", isbn))
                     .method("GET", null)
                     .addHeader("Accept", "application/json, text/plain, */*")
                     .addHeader("Accept-Language", "zh-CN,zh;q=0.9")

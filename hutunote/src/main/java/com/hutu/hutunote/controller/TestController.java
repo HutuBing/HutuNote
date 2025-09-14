@@ -49,4 +49,10 @@ public class TestController extends BaseController {
         bookExecute.refreshBook();
     }
 
+    @GetMapping("/getNewBook")
+    @PostConstruct
+    public void getNewBook() {
+        bookExecute.getNewBook();
+    }
+
 }
