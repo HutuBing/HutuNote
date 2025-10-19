@@ -1,0 +1,10 @@
+package com.hutu.hutunote.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hutu.hutunote.model.entity.OfflineInfo;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface OfflineInfoMapper extends BaseMapper<OfflineInfo> {
+
+}

@@ -28,11 +28,6 @@ public class TestController extends BaseController {
         return Result.OK(kongfuziExecute.getSellWellDetailList());
     }
 
-    @GetMapping("/test2")
-    public Result<List<KongIsbnInfoVo>> test2() {
-        return Result.OK(kongfuziExecute.getIsbnInfoList());
-    }
-
     @PostMapping("/uploadBook")
     public void uploadBook(MultipartFile file) {
         bookExecute.uploadBook(file);
@@ -43,16 +38,34 @@ public class TestController extends BaseController {
         bookExecute.downloadBook(inventory, response);
     }
 
-    @GetMapping("/refreshBook")
+    @GetMapping("/refreshOnlineBook")
     @PostConstruct
-    public void refreshBook() {
-        bookExecute.refreshBook();
+    public void refreshOnlineBook() {
+        bookExecute.refreshOnlineBook();
+    }
+
+    @GetMapping("/refreshOfflineBook")
+//    @PostConstruct
+    public void refreshOfflineBook() {
+        bookExecute.refreshOfflineBook();
     }
 
     @GetMapping("/getNewBook")
-    @PostConstruct
+//    @PostConstruct
     public void getNewBook() {
         bookExecute.getNewBook();
+    }
+
+    @GetMapping("/autoUploadOnline")
+    @PostConstruct
+    public void autoUploadOnline() {
+        bookExecute.autoUploadOnline();
+    }
+
+    @GetMapping("/autoUploadOffline")
+    @PostConstruct
+    public void autoUploadOffline() {
+        bookExecute.autoUploadOffline();
     }
 
 }
