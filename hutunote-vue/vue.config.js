@@ -21,23 +21,19 @@ module.exports = {
     host: '0.0.0.0',
     https: false, // https:{type:Boolean}
     open: true, // 配置自动启动浏览器
-    proxy: null,
     proxy: {
       '/api': {
-        target: 'http://localhost',
+        target: 'http://localhost:8088',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/' // 重写接口
+          '^/api': '/'
         }
       },
       '/hutunote': {
-        target: 'http://localhost',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/hutunote': '/' // 重写接口
-        }
+        target: 'http://localhost:8088',
+        changeOrigin: true
       }
-    }, // 配置多个代理
+    },
     disableHostCheck: true
   },
   lintOnSave: false, // 关闭eslint代码检查
