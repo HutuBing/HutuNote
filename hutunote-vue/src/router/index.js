@@ -19,7 +19,7 @@ const staticRoutes = [
       nav: 'home',
       title: '首页'
     },
-    component: () => import('@/views/hetong'),
+    component: Layout,
     children: [
       {
         name: 'homeIndex',
@@ -28,16 +28,16 @@ const staticRoutes = [
         meta: {
           nav: 'home',
           title: '首页'
-        },
+        }
       },
       {
-          name: 'note-editor',
-          path: '/note-editor',
-          component: () => import('@/views/note/note-editor'),
-          meta: {
+        name: 'note-editor',
+        path: '/note-editor',
+        component: () => import('@/views/note/note-editor'),
+        meta: {
           nav: 'note-editor',
-              title: '笔记'
-          },
+          title: '笔记'
+        }
       }
     ]
   }
